@@ -1,5 +1,8 @@
 local opt = vim.opt -- for conciseness
 
+-- language
+vim.cmd("language en_US")
+
 -- line numbers
 opt.relativenumber = true
 opt.number = true
