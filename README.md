@@ -44,5 +44,6 @@ Personal Neovim setup with LSP, autocompletion, and file navigation.
 
 ## Requirements
 
-- Neovim 0.10+
+- Neovim 0.10+ `brew install nvim`
+- ripgrep `brew install ripgrep`
 - Python (for Pyright/Ruff LSP)
