@@ -1,6 +1,9 @@
 local opt = vim.opt -- for conciseness
 
--- language
+-- language and locale settings
+-- Set locale environment variables for LSP servers (especially Python-based ones like pyright)
+vim.env.LC_ALL = "en_US.UTF-8"
+vim.env.LANG = "en_US.UTF-8"
 vim.cmd("language en_US")
 
 -- line numbers
@@ -40,3 +43,8 @@ opt.splitright = true
 opt.splitbelow = true
 
 opt.iskeyword:append("-")
+
+-- Performance optimizations
+opt.lazyredraw = true -- Don't redraw screen during macros
+opt.timeoutlen = 500 -- Faster key sequence completion
+opt.ttimeoutlen = 10 -- Faster key code timeout

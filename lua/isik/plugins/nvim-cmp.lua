@@ -19,6 +19,13 @@ require("luasnip/loaders/from_vscode").lazy_load()
 vim.opt.completeopt = "menu,menuone,noselect"
 
 cmp.setup({
+  -- Performance optimizations
+  performance = {
+    debounce = 150, -- Delay before showing completion (default: 60ms)
+    throttle = 60,
+    fetching_timeout = 500,
+    max_view_entries = 30, -- Limit number of completion items shown
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -47,4 +54,12 @@ cmp.setup({
       ellipsis_char = "...",
     }),
   },
+})
+
+-- Disable completion in Telescope and other special buffers to prevent lag
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "TelescopePrompt", "TelescopeResults" },
+  callback = function()
+    require('cmp').setup.buffer({ enabled = false })
+  end,
 })

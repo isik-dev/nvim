@@ -1,54 +1,50 @@
 # Neovim Configuration
 
-Personal Neovim setup with LSP, autocompletion, and file navigation.
+Personal Neovim setup optimized for Python and Lua development with LSP, autocompletion, and fuzzy finding.
 
-## Structure
+## Setup
 
-### Root
-- `init.lua` - Main entry point, loads all modules
+### 1. Install Prerequisites
+```bash
+brew install neovim ripgrep node
+```
 
-### Core (`lua/isik/core/`)
-- `options.lua` - Editor settings (line numbers, tabs, language)
-- `keymaps.lua` - Custom key bindings
-- `colorscheme.lua` - Color scheme configuration
+### 2. Clone Config
+```bash
+git clone <your-repo-url> ~/.config/nvim
+```
 
-### Plugins (`lua/isik/plugins/`)
-- `plugins-setup.lua` - Plugin declarations using Packer
-- `comment.lua` - Comment toggling (gcc)
-- `lualine.lua` - Status line
-- `nvim-tree.lua` - File explorer
-- `nvim-cmp.lua` - Autocompletion engine
-- `telescope.lua` - Fuzzy finder
+### 3. Configure Shell
+Add to `~/.zshrc` (or `~/.bashrc`):
+```bash
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+```
 
-### LSP (`lua/isik/plugins/lsp/`)
-- `mason.lua` - LSP server installer (pyright, ruff, lua_ls)
-- `lspconfig.lua` - LSP server configurations and keybindings
-- `lspsaga.lua` - Enhanced LSP UI
+Reload shell:
+```bash
+source ~/.zshrc
+```
 
-## Key Features
+### 4. Install Plugins
+Open Neovim and let Packer auto-install:
+```bash
+nvim
+```
 
-- **Language Support**: Python, Lua
-- **Fuzzy Finding**: Telescope for files and text search
-- **File Navigation**: nvim-tree sidebar
-- **Autocompletion**: nvim-cmp with LSP integration
-- **LSP Features**: Go to definition, hover docs, rename, code actions
+Wait for plugins to install, then restart Neovim. LSP servers (ruff, lua_ls) will auto-install via Mason.
 
-## LSP Keybindings
+## Key Bindings
 
+- `<space>ff` - Find files
+- `<space>fs` - Search text in project
+- `<space>e` - Toggle file explorer
 - `gd` - Peek definition
-- `gD` - Go to declaration
 - `K` - Hover documentation
 - `<leader>ca` - Code actions
 - `<leader>rn` - Rename symbol
-- `[d` / `]d` - Jump to prev/next diagnostic
 
-## Requirements
+## LSP Servers
 
-- Neovim 0.10+ `brew install nvim`
-- ripgrep `brew install ripgrep`
-- Python (for Pyright/Ruff LSP)
-- pip3.11 install neovim (run in shell)
-
-## Checks
-- nvim --clean (to open clean nvim)
-- :checkhealth (to see if there are any issues)
+- **Python**: Ruff (linting, formatting)
+- **Lua**: lua_ls (language server)
